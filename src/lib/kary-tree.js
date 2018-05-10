@@ -32,4 +32,9 @@ export default class KAryTree {
       }
     }
   }
+  // TODO: Find(value) iterate through using a breadth first approach return first value, 
+  // if not included return null
+
+  // TODO: toString(string) iterate over all nodes breadthfirst and 
+  // concatenate into a string with new lines
 }

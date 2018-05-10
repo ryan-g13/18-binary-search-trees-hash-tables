@@ -52,6 +52,8 @@ class BinarySearchTree {
     }
     return this._find(rootNode.left, value);
   }
+  
+  // Write a remove(value) research docs in other languages 
 }
 
 export default BinarySearchTree;
