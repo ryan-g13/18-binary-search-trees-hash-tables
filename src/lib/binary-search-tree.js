@@ -52,8 +52,42 @@ class BinarySearchTree {
     }
     return this._find(rootNode.left, value);
   }
-  
+
   // Write a remove(value) research docs in other languages 
+  remove(root, value) {
+    if (!this.root) {
+      return null;
+    }
+    if (value < root.value) {
+      root.left = this.remove(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.remove(root.right, value);
+    } else {
+      if (root.left === null) {
+        const temp = root.right;
+        this.root = temp;
+        // remove node here aka root ?delete children
+        return root;
+      } else if (root.right === null) {
+        const temp = root.left;
+        // same as above
+        return temp;
+      }
+      const temp = this.minValueNode(root.right);
+      root.value = temp.value;
+      root.right = this.remove(root.right, temp.value);
+    }
+    return root;
+  }
+
+  // helper function to find the minimum value
+  minValueNode(node) { /*eslint-disable-line */
+    let current = node;
+    while (current.left !== null) {
+      current = current.left;
+    }
+    return current;
+  }
 }
 
 export default BinarySearchTree;
