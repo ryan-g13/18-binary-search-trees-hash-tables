@@ -65,7 +65,7 @@ class BinarySearchTree {
     } else {
       if (root.left === null) {
         const temp = root.right;
-        this.root = temp;
+        this.root = temp; // root of tree??
         // remove node here aka root ?delete children
         return root;
       } else if (root.right === null) {
