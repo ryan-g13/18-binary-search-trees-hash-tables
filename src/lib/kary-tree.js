@@ -37,4 +37,6 @@ export default class KAryTree {
 
   // TODO: toString(string) iterate over all nodes breadthfirst and 
   // concatenate into a string with new lines
+
+  // TODO: toArray(array) depth first traversal push all elements into an array. 
 }
