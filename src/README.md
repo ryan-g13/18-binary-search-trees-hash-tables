@@ -2,8 +2,6 @@
 Authors: Collin Meredith, Ryan Groesch
 
 ## Feature Tasks of Lab
-
-
     Add a remove(value) method to the BinarySearchTree class presented in class.
 
     Implement a K-ary-Tree Class
@@ -13,3 +11,4 @@ Authors: Collin Meredith, Ryan Groesch
             toArray(array) should use a depth-first traversal and push all the tree's elements into an array.
 
 ## Big O considerations: 
+

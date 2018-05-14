@@ -90,6 +90,26 @@ export default class KAryTree {
   // TODO: toArray(array) depth first traversal push all elements into an array. 
   // utilize a stack and queue to 
   toArray(array) {
-    
+    if (!this.root) {
+      return null;
+    }
+    let ansString = '';
+    return this._toString(this.root);
+  }
+
+  _toString(rootNode) {
+    const queue = new Queue();
+    queue.enqueue(rootNode);
+
+    let currentNode = null;
+
+    while (!queue.isEmpty()) {
+      currentNode = queue.dequeue();
+
+      ansString += `${currentNode.value}/n`;
+      for (let i = 0; i < currentNode.children.length; i++) {
+        queue.enqueue(currentNode.children[i]);
+      }
+    }
   }
 }
