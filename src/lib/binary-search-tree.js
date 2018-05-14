@@ -5,8 +5,6 @@ class BinarySearchTree {
     this.root = root;
   }
 
-  // Time : O(H) -> O(lg n)
-  // Space : O(H) -> O(lg n)
   insert(nodeToInsert) {
     if (!this.root) {
       this.root = nodeToInsert;
@@ -16,7 +14,6 @@ class BinarySearchTree {
   }
 
   _insert(rootNode, nodeToInsert) {
-    // Vinicio -  1 - do I have to go left?
     if (nodeToInsert.value < rootNode.value) {
       if (!rootNode.left) {
         rootNode.left = nodeToInsert;
@@ -24,17 +21,12 @@ class BinarySearchTree {
         this._insert(rootNode.left, nodeToInsert);
       }
     } else if (!rootNode.right) {
-      // Vinicio - 2 - can I move to the right branch?
       rootNode.right = nodeToInsert;
     } else {
-      // Moving to the right branch
       this._insert(rootNode.right, nodeToInsert);
     }
   }
 
-
-  // Time : O(H) -> O(lg n)
-  // Space : O(H) -> O(lg n)
   find(value) {
     if (!this.root) {
       return null;
@@ -46,41 +38,53 @@ class BinarySearchTree {
     if (!rootNode) {
       return null;
     } else if (rootNode.value === value) {
-      return rootNode;
+      return rootNode.value;
     } else if (rootNode.value < value) {
       return this._find(rootNode.right, value);
     }
     return this._find(rootNode.left, value);
   }
 
-  // Write a remove(value) research docs in other languages 
-  remove(root, value) {
+  remove(value) {
     if (!this.root) {
       return null;
     }
-    if (value < root.value) {
-      root.left = this.remove(root.left, value);
-    } else if (value > root.value) {
-      root.right = this.remove(root.right, value);
-    } else {
-      if (root.left === null) {
-        const temp = root.right;
-        this.root = temp; // root of tree??
-        // remove node here aka root ?delete children
-        return root;
-      } else if (root.right === null) {
-        const temp = root.left;
-        // same as above
-        return temp;
-      }
-      const temp = this.minValueNode(root.right);
-      root.value = temp.value;
-      root.right = this.remove(root.right, temp.value);
-    }
-    return root;
+    return this._remove(this.root, value);
   }
 
-  // helper function to find the minimum value
+  _remove(rootNode, value) {
+    if (!rootNode) {
+      return null;
+    }
+    if (value < rootNode.value) {
+      this._remove(rootNode.left, value);
+    } else if (value > rootNode.value) {
+      this._remove(rootNode.right, value);
+    } else {
+      if (rootNode.left === null && rootNode.right === null) {
+        rootNode.value = null;
+        return this.root;
+      }
+      if (rootNode.left === null) {
+        const temp = rootNode.right;
+        rootNode.value = temp.value; 
+        rootNode.right = temp.right; 
+        rootNode.left = temp.left; 
+        return this.root;
+      } else if (rootNode.right === null) {
+        const temp = rootNode.left;
+        rootNode.value = temp.value; 
+        rootNode.right = temp.right;
+        rootNode.left = temp.left; 
+        return this.root;
+      }
+      const temp = this.minValueNode(rootNode.right);
+      rootNode.value = temp.value;
+      this._remove(rootNode.right, temp.value);
+    }
+    return this.root;
+  }
+
   minValueNode(node) { /*eslint-disable-line */
     let current = node;
     while (current.left !== null) {

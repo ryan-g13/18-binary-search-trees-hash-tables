@@ -9,11 +9,6 @@
     "dboff": "killall mongod",
     "test1": "jest --coverage --forceExit --runInBand"
   },
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/src/__test__/lib/test.env.js"
-    ]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
